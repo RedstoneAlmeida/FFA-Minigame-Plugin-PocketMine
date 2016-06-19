@@ -1,0 +1,9 @@
+name: FFA
+main: FFA\FFA
+version: 1.0.0
+api: [1.1.0, 1.0.0, 2.0.0]
+author: Ozelord
+
+commands:
+ ffa:
+  description: "FFA Haupt-Command"
