@@ -17,6 +17,10 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\player\PlayerDropItemEvent;
+use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\BlockPlaceEvent;
 
 class FFA extends PluginBase implements Listener {
     
@@ -152,6 +156,28 @@ class FFA extends PluginBase implements Listener {
             $player->getInventory()->setLeggings(Item::get(308));
             $player->getInventory()->setBoots(Item::get(309));
             $player->getInventory()->sendArmorContents($player);
+        }
+    }
+    
+    public function onJoin(PlayerJoinEvent $event) {
+        $event->getPlayer()->setExperienceLevel(1);
+    }
+    
+    public function onDrop(PlayerDropItemEvent $event) {
+        if($event->getPlayer()->getExperienceLevel() == 123) {
+            $event->setCancelled();
+        }
+    }
+    
+    public function onBlockBreak(BlockBreakEvent $event) {
+        if($event->getPlayer()->getExperienceLevel() == 123) {
+            $event->setCancelled();
+        }
+    }
+    
+    public function onPlaceBreak(BlockPlaceEvent $event) {
+        if($event->getPlayer()->getExperienceLevel() == 123) {
+            $event->setCancelled();
         }
     }
 }
